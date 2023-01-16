@@ -62,10 +62,11 @@ Drive chassis (
 
 void initialize() {
   // Print our branding over your terminal :D
-  shooting.suspend();
+  
   ez::print_ez_template();
   
   pros::delay(500); // Stop the user from doing anything while legacy ports configure.
+  shooting.suspend();
 
   
 
@@ -93,6 +94,7 @@ void initialize() {
 
   // Initialize chassis and auton selector
   chassis.initialize();
+  pros::delay(250);
   ez::as::initialize();
 
   
