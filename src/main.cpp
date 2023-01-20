@@ -58,15 +58,15 @@ Drive chassis (
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
- pros::Task shooting(slingshotShoot, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "");
 
+pros::Task shooting(slingshotShoot, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "");
 void initialize() {
   // Print our branding over your terminal :D
   
   ez::print_ez_template();
   
   pros::delay(500); // Stop the user from doing anything while legacy ports configure.
-  shooting.suspend();
+  //shooting.suspend();
 
   
 
@@ -83,7 +83,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.add_autons({
-    Auton("Example Drive\n\nDrive forward and come back.", elims),
+    Auton("Example Drive\n\nDrive forward and come back.", elimsLeft),
     Auton("Example Turn\n\nTurn 3 times.", turn_example),
     Auton("Drive and Turn\n\nDrive forward, turn, come back. ", drive_and_turn),
     Auton("Drive and Turn\n\nSlow down during drive.", wait_until_change_speed),
@@ -148,8 +148,10 @@ void autonomous() {
   chassis.reset_drive_sensor(); // Reset drive sensors to 0
   chassis.set_drive_brake(MOTOR_BRAKE_HOLD); // Set motors to hold.  This helps autonomous consistency.
 
-  shooting.resume();
+  //skills();
+  //shooting.resume();
   ez::as::auton_selector.call_selected_auton(); // Calls selected auton from autonomous selector.
+  
 }
 
 
@@ -169,10 +171,11 @@ void autonomous() {
  */
 void opcontrol() {
   // This is preference to what you like to drive on.
-  shooting.suspend();
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
 
   while (true) {
+
+    shooting.suspend();
     intakeControl();
     chassis.tank(); // Tank control
     setSlingshot();

@@ -249,8 +249,10 @@ void interfered_example() {
 // Make your own autonomous functions here!
 // . . .
 
-void elims(){
+void elimsLeft(){
   pto_intake(true);
+  //lockRelease();
+  //pros::delay(3000);
   setSpeed(50);
   chassis.set_drive_pid(-2.5,DRIVE_SPEED,true);
   chassis.wait_drive();
@@ -264,10 +266,10 @@ void elims(){
   chassis.wait_drive();
   chassis.set_drive_pid(-13,DRIVE_SPEED,true);
   chassis.wait_drive();
-  chassis.set_turn_pid(24,TURN_SPEED);
+  chassis.set_turn_pid(23,TURN_SPEED);
   chassis.wait_drive();
   intakeLift();
-  chassis.set_drive_pid(13.5,DRIVE_SPEED,true);
+  chassis.set_drive_pid(14,DRIVE_SPEED,true);
   chassis.wait_drive();
   pros::delay(300);
   lockRelease();
@@ -285,14 +287,62 @@ void elims(){
   chassis.wait_drive();
   intakeLower();
   pros::delay(2000);
-  chassis.set_turn_pid(15,TURN_SPEED);
+  chassis.set_turn_pid(12,TURN_SPEED);
   chassis.wait_drive();
   chassis.set_drive_pid(5,DRIVE_SPEED,true);
   chassis.wait_drive();
   pros::delay(200);
   lockRelease();
   pros::delay(200);
+  setSpeed(0);
   bandRelease();
+
+
+}
+
+void elimsRight(){
+  pto_intake(true);
+  //lockRelease();
+  //pros::delay(3000);
+  setSpeed(127);
+  chassis.set_drive_pid(25,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-10,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-28,TURN_SPEED);
+  chassis.wait_drive();
+
+  pros::delay(1000);
+  lockRelease();
+  pros::delay(1500);
+
+  chassis.set_turn_pid(-84,TURN_SPEED);
+  chassis.wait_drive();
+  chassis.set_drive_pid(60,40,true);
+  chassis.wait_drive();
+  pros::delay(700);
+  chassis.set_turn_pid(3,TURN_SPEED);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-5,DRIVE_SPEED,true);
+  chassis.wait_drive();
+
+  pros::delay(300);
+  lockRelease();
+  pros::delay(200);
+
+  chassis.set_turn_pid(-87,TURN_SPEED);
+  chassis.wait_drive();
+  bandRelease();
+  chassis.set_drive_pid(-79,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-36,TURN_SPEED);
+  chassis.wait_drive();
+  setSpeed(50);
+  chassis.set_drive_pid(-7,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_drive_pid(5,DRIVE_SPEED,true);
+  chassis.wait_drive();
+
 
 
 }
@@ -301,6 +351,8 @@ void elims(){
 
 void WP(){
   pto_intake(true);
+  //lockRelease();
+  //pros::delay(3000);
   setSpeed(60);
   chassis.set_drive_pid(-2.5,DRIVE_SPEED,true);
   chassis.wait_drive();
@@ -355,18 +407,82 @@ void WP(){
 
 
 
-  
+}
 
-
-
-
-
-  
-  /*intakeSpeed(60);
-  pros::delay(1000);
+void skills(){
+  pto_intake(true);
+  //lockRelease();
+  //pros::delay(3000);
+  setSpeed(100);
+  //tune
   chassis.set_drive_pid(-2.5,DRIVE_SPEED,true);
   chassis.wait_drive();
+  pros::delay(800);
+  chassis.set_drive_pid(6.5,DRIVE_SPEED,true);
+  chassis.wait_until(2);
+  setSpeed(127);
+  chassis.wait_drive();
+  pros::delay(1000);
+  chassis.set_turn_pid(-51,TURN_SPEED);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-13,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_turn_pid(23,TURN_SPEED);
+  chassis.wait_drive();
+  intakeLift();
+  chassis.set_drive_pid(13.5,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  pros::delay(300);
+  lockRelease();
+  pros::delay(1400);
+  intakeLower();
+  pros::delay(5000);
+  lockRelease();
+  pros::delay(100);
+  intakeLift();
+  chassis.set_drive_pid(-11,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_turn_pid(86,TURN_SPEED);
+  chassis.wait_drive();
+  chassis.set_drive_pid(24,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  intakeLower();
+  pros::delay(4000);
+  chassis.set_turn_pid(14,TURN_SPEED);
+  chassis.wait_drive();
+  //chassis.set_drive_pid(5,DRIVE_SPEED,true);
+  //chassis.wait_drive();
+
   pros::delay(200);
-  chassis.set_drive_pid(5,DRIVE_SPEED,true);
-  pto_intake(false);*/
+  lockRelease();
+  pros::delay(200);
+  bandRelease();
+
+  //chassis.set_drive_pid(-5,DRIVE_SPEED,true);
+  //chassis.wait_drive();
+  chassis.set_turn_pid(80,TURN_SPEED);
+  chassis.wait_drive();
+  pros::delay(800);
+  //tune
+  chassis.set_drive_pid(100,40,true);
+  chassis.wait_drive();
+  //tune
+  chassis.set_turn_pid(207,TURN_SPEED);
+  chassis.wait_drive();
+  //tune
+  chassis.set_drive_pid(36,DRIVE_SPEED,true);
+  chassis.wait_drive();
+
+  pros::delay(200);
+  lockRelease();
+  pros::delay(200);
+
+  chassis.set_drive_pid(-67,DRIVE_SPEED,true);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-90,TURN_SPEED);
+  chassis.wait_drive();
+
+  endgameShoot();
+  
+
 }
