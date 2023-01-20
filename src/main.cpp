@@ -66,7 +66,7 @@ void initialize() {
   ez::print_ez_template();
   
   pros::delay(500); // Stop the user from doing anything while legacy ports configure.
-  //shooting.suspend();
+  shooting.suspend();
 
   
 
@@ -149,7 +149,7 @@ void autonomous() {
   chassis.set_drive_brake(MOTOR_BRAKE_HOLD); // Set motors to hold.  This helps autonomous consistency.
 
   //skills();
-  //shooting.resume();
+  shooting.resume();
   ez::as::auton_selector.call_selected_auton(); // Calls selected auton from autonomous selector.
   
 }
@@ -172,10 +172,11 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on.
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
+  shooting.suspend();
 
   while (true) {
 
-    shooting.suspend();
+    
     intakeControl();
     chassis.tank(); // Tank control
     setSlingshot();
